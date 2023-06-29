@@ -1,33 +1,22 @@
 package me.janek.user.interfaces.user;
 
 import lombok.RequiredArgsConstructor;
-import me.janek.user.domain.user.UserCommand;
 import me.janek.user.domain.user.UserService;
-import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import static me.janek.user.interfaces.user.UserDto.*;
+import static me.janek.user.interfaces.user.UserDto.RegisterRequest;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
 
-  private final Environment environment;
-
   private final UserService userService;
 
-  @GetMapping("/health_check")
-  public String status() {
-    return "It's Working in User Service";
-  }
-
-  @GetMapping("/welcome")
-  public String welcome() {
-    return environment.getProperty("greeting.message");
-  }
-
-  @PostMapping("/users")
+  @PostMapping("/")
   public String userRegistration(@RequestBody RegisterRequest request) {
     var command = request.toCommand();
     userService.createUser(command);
