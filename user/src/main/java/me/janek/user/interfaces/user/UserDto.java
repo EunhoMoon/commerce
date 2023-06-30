@@ -3,6 +3,7 @@ package me.janek.user.interfaces.user;
 import lombok.Data;
 import lombok.Getter;
 import me.janek.user.domain.user.UserCommand;
+import me.janek.user.domain.user.UserInfo;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -42,10 +43,16 @@ public class UserDto {
   }
 
   @Getter
-  public static class RegisterResponse {
+  public static class UserResponse {
+    private final String email;
+    private final String name;
+    private final String userToken;
 
-
-
+    public UserResponse(UserInfo userInfo) {
+      this.email = userInfo.getEmail();
+      this.name = userInfo.getName();
+      this.userToken = userInfo.getUserToken();
+    }
   }
 
 }

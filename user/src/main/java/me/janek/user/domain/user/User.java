@@ -26,7 +26,7 @@ public class User {
   @Column(nullable = false, unique = true)
   private String userToken;
 
-  @Column(nullable = false, unique = true)
+  @Column(nullable = false)
   private String encryptedPassword;
 
   @Builder

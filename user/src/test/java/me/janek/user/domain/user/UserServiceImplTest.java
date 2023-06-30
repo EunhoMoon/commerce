@@ -15,30 +15,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Transactional
 class UserServiceImplTest {
 
-  @Autowired
-  UserService userService;
+    @Autowired
+    UserService userService;
 
-  @Autowired
-  UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
-  @Test
-  @DisplayName("")
-  void test() {
-    //given
-    var command = UserCommand.builder()
-      .email("test@co.kr")
-      .name("test")
-      .password("12341234")
-      .userToken(UUID.randomUUID().toString())
-      .build();
+    @Test
+    @DisplayName("")
+    void test() {
+        //given
+        var command = UserCommand.builder()
+            .email("test@co.kr")
+            .name("test")
+            .password("12341234")
+            .userToken(UUID.randomUUID().toString())
+            .build();
 
-    // when
-    userService.createUser(command);
+        // when
+        userService.createUser(command);
 
-    // then
-    var allUsers = userRepository.findAll();
-    assertEquals(1, allUsers.size());
-    assertEquals("test@co.kr", allUsers.get(0).getEmail());
-  }
+        // then
+        var allUsers = userRepository.findAll();
+        assertEquals(1, allUsers.size());
+        assertEquals("test@co.kr", allUsers.get(0).getEmail());
+    }
 
 }
