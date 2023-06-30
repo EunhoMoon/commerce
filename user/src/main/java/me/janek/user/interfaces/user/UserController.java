@@ -13,7 +13,7 @@ import static me.janek.user.interfaces.user.UserDto.UserResponse;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user-service/users")
 @RequiredArgsConstructor
 public class UserController {
 
