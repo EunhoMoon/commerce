@@ -1,5 +1,6 @@
 package me.janek.user.interfaces.user;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.Getter;
 import me.janek.user.domain.user.UserCommand;
@@ -8,7 +9,12 @@ import me.janek.user.domain.user.UserInfo;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
+import static com.fasterxml.jackson.annotation.JsonInclude.Include;
+import static me.janek.user.interfaces.user.OrderDto.*;
 
 @Data
 public class UserDto {
@@ -43,10 +49,12 @@ public class UserDto {
   }
 
   @Getter
+  @JsonInclude(Include.NON_NULL)
   public static class UserResponse {
     private final String email;
     private final String name;
     private final String userToken;
+    private final List<OrderResponse> orders = new ArrayList<>();
 
     public UserResponse(UserInfo userInfo) {
       this.email = userInfo.getEmail();
