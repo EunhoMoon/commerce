@@ -1,11 +1,13 @@
 package me.janek.user.interfaces.user;
 
 import lombok.RequiredArgsConstructor;
+import me.janek.user.domain.user.UserInfo;
 import me.janek.user.domain.user.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static me.janek.user.interfaces.user.UserDto.RegisterRequest;
 import static me.janek.user.interfaces.user.UserDto.UserResponse;
@@ -31,7 +33,20 @@ public class UserController {
 
     @GetMapping()
     public ResponseEntity<List<UserResponse>> getAllUsers() {
-        return ResponseEntity.status(OK).body(null);
+        var allUsers = userService.getAllUsers().stream()
+            .map(UserInfo::toDto)
+            .collect(Collectors.toList());
+
+        return ResponseEntity.status(OK).body(allUsers);
+    }
+
+    @GetMapping("/{user-token}")
+    public ResponseEntity<UserResponse> getUserByToken(
+        @PathVariable("user-token") String userToken
+    ) {
+        var findUser = userService.getUserByUserToken(userToken).toDto();
+
+        return ResponseEntity.status(OK).body(findUser);
     }
 
 }

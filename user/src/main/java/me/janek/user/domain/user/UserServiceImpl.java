@@ -31,7 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfo getUserByUserToken(String userToken) {
-        var findUser = userRepository.findByUserToken(userToken).orElseThrow(RuntimeException::new);
+        var findUser = userRepository.findByUserToken(userToken)
+            .orElseThrow(RuntimeException::new);
         return new UserInfo(findUser);
     }
 
