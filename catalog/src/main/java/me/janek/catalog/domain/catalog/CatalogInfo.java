@@ -15,7 +15,7 @@ public class CatalogInfo {
 
     private Integer unitPrice;
 
-//    private Integer totalPrice;
+    private Integer stock;
 
     private LocalDateTime createdAt;
 
@@ -23,7 +23,7 @@ public class CatalogInfo {
         this.productToken = catalog.getProductToken();
         this.productName = catalog.getProductName();
         this.unitPrice = catalog.getUnitPrice();
-//        this.totalPrice = catalog.getTo;
+        this.stock = catalog.getStock();
         this.createdAt = catalog.getCreatedAt();
     }
 

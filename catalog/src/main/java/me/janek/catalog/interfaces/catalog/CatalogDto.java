@@ -18,14 +18,14 @@ public class CatalogDto {
         private final String productId;
         private final String productName;
         private final Integer unitPrice;
-//        private final Integer totalPrice;
+        private final Integer stock;
         private final LocalDateTime createdAt;
 
         public CatalogResponse(CatalogInfo catalogInfo) {
             this.productId = catalogInfo.getProductToken();
             this.productName = catalogInfo.getProductName();
             this.unitPrice = catalogInfo.getUnitPrice();
-//            this.totalPrice = catalogInfo.getTotalPrice();
+            this.stock = catalogInfo.getStock();
             this.createdAt = catalogInfo.getCreatedAt();
         }
     }
