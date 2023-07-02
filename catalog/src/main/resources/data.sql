@@ -1,0 +1,3 @@
+INSERT INTO catalog (product_token, product_name, stock, unit_price, created_at) VALUES ('CATALOG-001', 'Shirts', 100, 35000, NOW());
+INSERT INTO catalog (product_token, product_name, stock, unit_price, created_at) VALUES ('CATALOG-002', 'Jean', 70, 65000, NOW());
+INSERT INTO catalog (product_token, product_name, stock, unit_price, created_at) VALUES ('CATALOG-003', 'Half-pants', 50, 22000, NOW());
