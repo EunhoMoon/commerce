@@ -20,4 +20,5 @@ public class UserInfo {
     public UserResponse toDto() {
         return new UserResponse(this);
     }
+
 }
