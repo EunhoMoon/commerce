@@ -16,6 +16,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
     @Override
+    @Transactional
     public OrderInfo createOrder(OrderCommand command) {
         var createdOrder = command.toEntity();
 

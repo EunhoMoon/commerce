@@ -18,9 +18,8 @@ public class OrderDto {
         private Integer qty;
         private Integer unitPrice;
         private Integer totalPrice;
-        private String userToken;
 
-        public OrderCommand toCommand() {
+        public OrderCommand toCommand(String userToken) {
             var orderToken = UUID.randomUUID().toString();
 
             return OrderCommand.builder()
@@ -29,7 +28,7 @@ public class OrderDto {
                 .qty(this.qty)
                 .unitPrice(this.unitPrice)
                 .totalPrice(this.totalPrice)
-                .userToken(this.userToken)
+                .userToken(userToken)
                 .build();
         }
     }
