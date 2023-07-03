@@ -17,7 +17,6 @@ public class OrderDto {
         private String productToken;
         private Integer qty;
         private Integer unitPrice;
-        private Integer totalPrice;
 
         public OrderCommand toCommand(String userToken) {
             var orderToken = UUID.randomUUID().toString();
@@ -27,7 +26,7 @@ public class OrderDto {
                 .productToken(this.productToken)
                 .qty(this.qty)
                 .unitPrice(this.unitPrice)
-                .totalPrice(this.totalPrice)
+                .totalPrice(this.unitPrice * this.qty)
                 .userToken(userToken)
                 .build();
         }
