@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/user-service/users")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
 
