@@ -2,10 +2,14 @@ package me.janek.user.domain.user;
 
 import lombok.RequiredArgsConstructor;
 import me.janek.user.infrastructure.user.UserRepository;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,4 +46,19 @@ public class UserServiceImpl implements UserService {
             .map(UserInfo::new).collect(Collectors.toList());
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        var findUser = userRepository.findByEmail(username)
+            .orElseThrow(() -> new UsernameNotFoundException(username));
+
+        return new User(
+            findUser.getEmail(),
+            findUser.getEncryptedPassword(),
+            true,
+            true,
+            true,
+            true,
+            new ArrayList<>()
+        );
+    }
 }
