@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -62,11 +61,13 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     private String generateJwtToken(String userToken) {
-        var expirationTime = environment.getProperty("token.expiration_time", Long.class);
+        var EXPIRATION_TIME = new Date(System.currentTimeMillis() + environment.getProperty("token.expiration_time", Long.class));
+        var SECRET_KEY = environment.getProperty("token.secret", String.class);
+
         return Jwts.builder()
             .setSubject(userToken)
-            .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
-            .signWith(HS512, environment.getProperty("token.secret", String.class))
+            .setExpiration(EXPIRATION_TIME)
+            .signWith(HS512, SECRET_KEY)
             .compact();
     }
 
