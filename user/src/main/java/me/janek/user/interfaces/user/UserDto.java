@@ -64,7 +64,7 @@ public class UserDto {
   }
 
   @Data
-  public static class loginRequest {
+  public static class LoginRequest {
 
     @Email
     @NotNull(message = "Email cannot be null")

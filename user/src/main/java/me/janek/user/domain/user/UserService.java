@@ -12,4 +12,6 @@ public interface UserService extends UserDetailsService {
 
   List<UserInfo> getAllUsers();
 
+  UserInfo getUserDetailsByEmail(String username);
+  
 }

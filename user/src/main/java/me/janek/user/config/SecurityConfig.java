@@ -17,8 +17,6 @@ public class SecurityConfig {
 
     private final UserService userService;
 
-    private final BCryptPasswordEncoder passwordEncoder;
-
     private final Environment environment;
 
     @Bean
@@ -47,7 +45,7 @@ public class SecurityConfig {
     private AuthenticationFilter getAuthenticationFilter(
         AuthenticationManager authenticationManager
     ) {
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter(userService, environment);
         authenticationFilter.setAuthenticationManager(authenticationManager);
 
         return authenticationFilter;
