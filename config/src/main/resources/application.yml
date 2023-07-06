@@ -8,4 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: file:///Users/janek/documents/study/inflearn/git-local-repo
+          uri: https://github.com/EunhoMoon/commerce-config.git
+#          username:
+#          password:
+#          uri: file:///Users/janek/documents/study/inflearn/git-local-repo
