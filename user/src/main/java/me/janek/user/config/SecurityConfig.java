@@ -8,7 +8,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -33,12 +32,15 @@ public class SecurityConfig {
         http.csrf().disable();
 //        http.authorizeRequests().antMatchers("/users/**").permitAll();
 
+        http.authorizeRequests().antMatchers("/actuator/**").permitAll();
+
         http.authorizeRequests().antMatchers("/**")
             .hasIpAddress("192.168.0.21")
             .and()
             .addFilter(getAuthenticationFilter(authenticationManager));
 
         http.headers().frameOptions().disable();    // for h2-console
+
         return http.build();
     }
 
