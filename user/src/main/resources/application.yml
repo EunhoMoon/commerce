@@ -25,6 +25,16 @@ spring:
         web-allow-others: true
       path: /h2-console
 
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+#  cloud:
+#    refresh:
+#      extra-refreshable: com.zaxxer.hikari.HikariDataSource
+
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
@@ -41,4 +51,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans, info
+        include: refresh, health, beans, info, busrefresh
