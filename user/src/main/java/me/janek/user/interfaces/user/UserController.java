@@ -1,6 +1,7 @@
 package me.janek.user.interfaces.user;
 
 import lombok.RequiredArgsConstructor;
+import me.janek.user.application.UserDetailFacade;
 import me.janek.user.domain.user.UserInfo;
 import me.janek.user.domain.user.UserService;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,8 @@ import static org.springframework.http.HttpStatus.OK;
 public class UserController {
 
     private final UserService userService;
+
+    private final UserDetailFacade userDetailFacade;
 
     @PostMapping()
     public ResponseEntity<UserResponse> userRegistration(
@@ -44,7 +47,7 @@ public class UserController {
     public ResponseEntity<UserResponse> getUserByToken(
         @PathVariable("user-token") String userToken
     ) {
-        var findUser = userService.getUserByUserToken(userToken).toDto();
+        var findUser = userDetailFacade.getUserInfoAndUsersOrderList(userToken);
 
         return ResponseEntity.status(OK).body(findUser);
     }

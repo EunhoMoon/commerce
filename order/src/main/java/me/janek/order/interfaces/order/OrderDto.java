@@ -41,7 +41,7 @@ public class OrderDto {
         private final Integer qty;
         private final Integer unitPrice;
         private final Integer totalPrice;
-        private final LocalDateTime createAt;
+        private final LocalDateTime orderDate;
 
         public OrderResponse(OrderInfo orderInfo) {
             this.orderToken = orderInfo.getOrderToken();
@@ -49,7 +49,7 @@ public class OrderDto {
             this.qty = orderInfo.getQty();
             this.unitPrice = orderInfo.getUnitPrice();
             this.totalPrice = orderInfo.getTotalPrice();
-            this.createAt = orderInfo.getCreateAt();
+            this.orderDate = orderInfo.getCreateAt();
         }
     }
 
