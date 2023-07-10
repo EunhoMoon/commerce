@@ -1,2 +1,6 @@
 encrypt:
-  key: supersupersupersecret1234asldfkjlregasdfvaerva
+#  key: supersupersupersecret1234asldfkjlregasdfvaerva
+  key-store:
+    location: file://${user.home}/documents/study/inflearn/git-local-repo/keystore/apiEncryptionKey.jks
+    password: test1234
+    alias: apienctyptionkey
