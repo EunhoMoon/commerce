@@ -46,3 +46,6 @@ management:
     web:
       exposure:
         include: refresh, health, beans, info, busrefresh
+logging:
+  level:
+    me.janek.user.application.client: DEBUG
